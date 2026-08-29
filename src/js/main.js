@@ -82,6 +82,11 @@ function renderCard(quote, animate = true) {
 
   const emoji = $('#cardCat')
   emoji.textContent = cat.emoji
+  emoji.classList.remove('pop')
+  if (animate) {
+    void emoji.offsetWidth
+    emoji.classList.add('pop')
+  }
 
   const text = $('#quoteText')
   text.textContent = quote.text
@@ -399,6 +404,10 @@ const THEMES = [
   { id: 'midnight', name: '午夜', swatch: 'swatch-night' },
   { id: 'sunset', name: '日落', swatch: 'swatch-sunset' },
   { id: 'forest', name: '森林', swatch: 'swatch-forest' },
+  { id: 'ocean', name: '海洋', swatch: 'swatch-ocean' },
+  { id: 'sakura', name: '樱花', swatch: 'swatch-sakura' },
+  { id: 'candy', name: '糖果', swatch: 'swatch-candy' },
+  { id: 'ember', name: '熔岩', swatch: 'swatch-ember' },
   { id: 'light', name: '明亮', swatch: 'swatch-light' }
 ]
 
@@ -406,7 +415,10 @@ function applyTheme() {
   document.documentElement.dataset.theme = state.theme
   localStorage.setItem('sour_theme', state.theme)
   const meta = document.querySelector('meta[name="theme-color"]')
-  if (meta) meta.content = state.theme === 'light' ? '#f5f5f7' : '#0f0f14'
+  if (meta) {
+    const lightThemes = ['light']
+    meta.content = lightThemes.includes(state.theme) ? '#f5f5f7' : '#0f0f14'
+  }
 }
 
 function renderThemes() {
