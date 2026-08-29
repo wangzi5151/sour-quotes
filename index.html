@@ -12,13 +12,22 @@
   <link rel="apple-touch-icon" href="icons/icon-192.png" />
   <title>每日毒鸡汤</title>
 </head>
-<body>
+<body data-theme="dark">
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
   <div id="app">
     <header class="topbar">
       <div class="brand">
-        <span class="brand-emoji">🍋</span>
-        <h1>每日毒鸡汤</h1>
-        <span class="brand-badge">v1.0</span>
+        <span class="brand-logo">🍋</span>
+        <div>
+          <h1>每日毒鸡汤</h1>
+          <span class="brand-sub">SOUR QUOTES</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn" id="btnTheme" title="主题">🎨</button>
+        <button class="icon-btn" id="btnSettings" title="设置">⚙️</button>
       </div>
     </header>
 
@@ -27,7 +36,10 @@
         <div class="card-glow"></div>
         <div class="card-cat" id="cardCat"></div>
         <blockquote class="quote-text" id="quoteText">加载中…</blockquote>
-        <div class="quote-tag" id="quoteTag"></div>
+        <div class="quote-meta" id="quoteMeta">
+          <span class="quote-tag" id="quoteTag"></span>
+          <span class="quote-date" id="quoteDate"></span>
+        </div>
       </section>
 
       <section class="controls">
@@ -43,12 +55,23 @@
         <button class="act" id="actCopy"><span class="act-icon">📋</span>复制</button>
         <button class="act" id="actFav"><span class="act-icon" id="favIcon">🤍</span>收藏</button>
         <button class="act" id="actShare"><span class="act-icon">🚀</span>分享</button>
+        <button class="act" id="actSpeak"><span class="act-icon">🔊</span>朗读</button>
         <button class="act" id="actPrev"><span class="act-icon">⏮️</span>上一条</button>
       </section>
 
-      <section class="cats" id="catFilter">
-        <span class="cat active" data-cat="all">全部</span>
+      <section class="checkin-bar">
+        <div class="checkin-info">
+          <span class="checkin-emoji">🔥</span>
+          <div class="checkin-text">
+            <b id="checkinStreak">已打卡 0 天</b>
+            <span id="checkinSub">连续打卡，喝汤不中断</span>
+          </div>
+        </div>
+        <button class="checkin-btn" id="btnCheckin">今日打卡</button>
       </section>
+      <section class="checkin-days" id="checkinDays"></section>
+
+      <section class="cats" id="catFilter"></section>
     </main>
 
     <nav class="bottom-nav">
@@ -61,7 +84,42 @@
     <section id="tabAbout" class="tab-page hidden"></section>
 
     <div id="toast" class="toast hidden"></div>
+
+    <!-- 主题弹窗 -->
+    <div class="modal-mask" id="themeModal">
+      <div class="modal">
+        <h3>🎨 主题配色</h3>
+        <div class="theme-grid" id="themeGrid"></div>
+      </div>
+    </div>
+
+    <!-- 设置弹窗 -->
+    <div class="modal-mask" id="settingsModal">
+      <div class="modal">
+        <h3>⚙️ 设置</h3>
+        <div class="setting-row">
+          <label>🔔 每日提醒</label>
+          <label class="switch">
+            <input type="checkbox" id="setNotify" />
+            <span class="track"></span>
+          </label>
+        </div>
+        <div class="setting-row">
+          <label>⏰ 提醒时间</label>
+          <input type="time" id="setNotifyTime" value="08:00" />
+        </div>
+        <div class="setting-row">
+          <label>📤 导出收藏</label>
+          <button class="checkin-btn" id="btnExport" style="font-size:12px;padding:8px 14px;">导出</button>
+        </div>
+        <div class="setting-row">
+          <label>📝 添加语录</label>
+          <button class="checkin-btn" id="btnAddQuote" style="font-size:12px;padding:8px 14px;">添加</button>
+        </div>
+      </div>
+    </div>
   </div>
+
   <script type="module" src="/src/js/main.js"></script>
 </body>
 </html>
