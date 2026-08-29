@@ -1,7 +1,7 @@
 {
   "name": "sour-quotes",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "每日毒鸡汤 - 扎心但好笑的语录机，每日一条，一键分享",
   "type": "module",
   "scripts": {
